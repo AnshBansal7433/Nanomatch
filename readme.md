@@ -186,21 +186,65 @@ Where:
 
 ## Build
 
-### Windows
+### Prerequisites
 
-Compile using MSVC or MinGW.
+- C++17 compatible compiler (GCC, Clang, or MSVC)
+- CMake 3.16 or later
 
-Example:
-
-```bash
-g++ -std=c++17 src/*.cpp -O3 -o NanoMatch
-```
-
-### Linux
+### Clone the repository
 
 ```bash
-g++ -std=c++17 src/*.cpp -O3 -pthread -o NanoMatch
+git clone <repository-url>
+cd NanoMatch
 ```
+
+### Configure
+
+```bash
+cmake -S . -B build
+```
+
+### Build
+
+```bash
+cmake --build build --config Release
+```
+
+### Run Benchmark
+
+```bash
+./build/NanoBenchmark ../orders.csv
+```
+
+On Windows (Visual Studio generator):
+
+```powershell
+.\build\Release\NanoBenchmark.exe ..\orders.csv
+```
+
+### Run Tests
+
+```bash
+./build/NanoMatch.exe ../orders.csv
+```
+
+On Windows:
+
+```powershell
+.\build\Release\NanoMatch.exe ..\orders.csv
+```
+### Generating dataset
+
+```bash
+./build/Generator.exe ../orders.csv 1000000
+```
+
+On Windows:
+
+```powershell
+.\build\Release\Generator.exe ..\orders.csv 1000000
+```
+(the number is for number of lines in CSV, 1000000 to generate csv of 1 million lines)
 
 ---
 
@@ -227,7 +271,7 @@ benchmark/
 ---
 ## Performance Profiling
 
-The NanoMatch engine was profiled using Intel VTune Profiler on an Intel Raptor Lake-DT architecture to validate performance claims. Please refer to the /performance_analysis folder to view the full VTune summaries, event counts, and high-resolution Flame Graphs.
+The NanoMatch engine was profiled for 1,000,000 orders using Intel VTune Profiler on an Intel Raptor Lake-DT architecture to validate performance claims. Please refer to the /performance_analysis folder to view the full VTune summaries, event counts, and high-resolution Flame Graphs.
 
 ### Key Performance Metrics
 
