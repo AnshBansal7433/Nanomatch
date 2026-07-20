@@ -219,7 +219,7 @@ cmake --build build --config Release
 On Windows (Visual Studio generator):
 
 ```powershell
-.\build\Release\NanoBenchmark.exe ..\orders.csv
+.\build\NanoBenchmark.exe ..\orders.csv
 ```
 
 ### Run Tests
@@ -231,7 +231,7 @@ On Windows (Visual Studio generator):
 On Windows:
 
 ```powershell
-.\build\Release\NanoMatch.exe ..\orders.csv
+.\build\NanoMatch.exe ..\orders.csv
 ```
 ### Generating dataset
 
@@ -242,7 +242,7 @@ On Windows:
 On Windows:
 
 ```powershell
-.\build\Release\Generator.exe ..\orders.csv 1000000
+.\build\Generator.exe ..\orders.csv 1000000
 ```
 (the number is for number of lines in CSV, 1000000 to generate csv of 1 million lines)
 
