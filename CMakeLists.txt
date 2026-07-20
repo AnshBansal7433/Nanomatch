@@ -18,7 +18,7 @@ add_executable(NanoMatch
 )
 
 add_executable(NanoBenchmark
-    src/benchmark.cpp
+    benchmark/benchmark.cpp
     src/orderbook.cpp
     src/FastIngestionPipeline.cpp
     src/FlatHashMap.cpp

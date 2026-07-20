@@ -225,15 +225,26 @@ benchmark/
 ```
 
 ---
+## Performance Profiling
 
-## Future Improvements
+The NanoMatch engine was profiled using Intel VTune Profiler on an Intel Raptor Lake-DT architecture to validate performance claims. Please refer to the /performance_analysis folder to view the full VTune summaries, event counts, and high-resolution Flame Graphs.
 
-- Multi-symbol order books
-- Network-based order gateway
-- Multi-threaded matching engine
-- Binary market data feed
-- Advanced risk management
-- Additional benchmarking and profiling
+### Key Performance Metrics
+
+| Metric | Result | Interpretation |
+| :--- | :--- | :--- |
+| **CPI Rate** | **0.514** | High Instruction Level Parallelism (~2 instructions/cycle). |
+| **Retiring Rate** | **52.1%** | Excellent pipeline efficiency with minimal branch stalls. |
+| **L1 Bound** | **10.5%** | Highly cache-efficient; minimal L1 cache misses. |
+| **DRAM Bound** | **3.9%** | Optimized memory access; avoided slow system RAM. |
+
+### Architectural Insights
+
+*   **Cache-Friendly Design:** The **L1 Bound (10.5%)** and **L2 Bound (0.0%)** metrics confirm that the contiguous memory pool architecture effectively keeps the working set within the CPU cache hierarchy.
+*   **Deterministic Execution:** Flame Graph analysis confirms that the critical matching path is allocation-free (`malloc`/`free` calls are isolated to ingestion/logging), ensuring no non-deterministic latency spikes.
+*   **Core Efficiency:** The engine is primarily **Core Bound (20.9%)**, demonstrating that the primary latency driver is the matching logic itself rather than hardware bottlenecks.
+
+
 
 ---
 
